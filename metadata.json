@@ -1,0 +1,6 @@
+{
+  "name": "LingoPip - English Vocabulary & Mascot Wardrobe",
+  "description": "Gamified English vocabulary learning web app for A1-B1 learners featuring semantic flashcards, dictation studio, contextual reading, mini-games, and an interactive 3D chibi mascot wardrobe shop.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

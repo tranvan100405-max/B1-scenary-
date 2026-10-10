@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with gamification stats, coins, and wardrobe",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "photoURL": { "type": "string" },
+        "coins": { "type": "number" },
+        "streak": { "type": "number" },
+        "lastActiveDate": { "type": "string" },
+        "equippedOutfit": { "type": "string", "maxLength": 50 },
+        "unlockedOutfits": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "coins", "equippedOutfit", "unlockedOutfits"]
+    },
+    "WordProgress": {
+      "title": "WordProgress",
+      "description": "User learning progress for an individual vocabulary word",
+      "type": "object",
+      "properties": {
+        "wordId": { "type": "string", "maxLength": 100 },
+        "word": { "type": "string", "maxLength": 100 },
+        "level": { "type": "string", "enum": ["A1", "A2", "B1"] },
+        "status": { "type": "string", "enum": ["new", "learning", "mastered"] },
+        "reviewCount": { "type": "number" },
+        "lastReviewedAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["wordId", "word", "status", "reviewCount"]
+    },
+    "QuizHistory": {
+      "title": "QuizHistory",
+      "description": "Log of completed mini-games and dictation sessions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "gameType": { "type": "string" },
+        "score": { "type": "number" },
+        "coinsEarned": { "type": "number" },
+        "completedAt": { "type": "string" }
+      },
+      "required": ["id", "gameType", "score", "coinsEarned"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile and inventory"
+    },
+    "/users/{userId}/wordProgress/{wordId}": {
+      "schema": "WordProgress",
+      "description": "Learner progress for individual words"
+    },
+    "/users/{userId}/quizHistory/{quizId}": {
+      "schema": "QuizHistory",
+      "description": "Game history log"
+    }
+  }
+}
